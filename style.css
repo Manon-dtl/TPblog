@@ -1,0 +1,23 @@
+h1, h3{
+    text-align:center;
+}
+h3{
+    background-color:  rgb(196, 178, 178);
+    color:white;
+    font-size:0.9em;
+    margin-bottom:0px;
+    height: 30px;
+}
+.News{
+    background-color: rgb(196, 178, 178);
+    margin-top:0px;
+    margin:auto;
+    border-radius: 20px;
+    height: 120px;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 174, 255);
+}
+

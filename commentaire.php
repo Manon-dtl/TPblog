@@ -2,10 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet"/>
         <title>TP BLOG</title>
     </head>
     <body>
-        <p><a href="index.php">Retour à la liste des billets</a></p>
+        <p><a href="index.php">Retour à l'Accueil</a></p>
  
 <?php
 
@@ -39,7 +41,8 @@ else{
     </p>
 </div>
 
-<h2>Commentaires</h2>
+<br /> <br /> 
+<h5>Commentaires</h5>
 
 <?php
 $req->closeCursor(); 
