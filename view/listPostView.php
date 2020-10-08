@@ -30,8 +30,8 @@ ob_start();
   ?>
 
   <div>
-    <a href="inscription.php"> <br /> S'inscrire </a>
-    <a href="connexion.php"> <br /> Se connecter </a>
+    <a href="index.php?action=inscription"> <br /> S'inscrire </a>
+    <a href="index.php?action=connexion"> <br /> Se connecter </a>
 
   </div>
 

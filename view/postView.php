@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 <h1>Mon super blog !</h1>
 
-<p><a href="index.php">Retour à l'Accueil</a></p>
+<p><a href="/index.php">Retour à l'Accueil</a></p>
 
 <div class="News">
     <?php echo $billet['titre']; ?>
@@ -28,5 +28,22 @@ while ($comment = $comments->fetch())
 }
 ?>
 <?php $content = ob_get_clean(); ?>
-
 <?php require('view/template.php'); ?>
+
+<h2>Ajouter un commentaire</h2>
+
+<form action="index.php?action=addComment&amp;id=<?= $billet['id'] ?>" method="post">
+    <div>
+        <label for="auteur">Auteur</label><br />
+        <input type="text" id="auteur" name="auteur" />
+    </div>
+    <div>
+        <label for="comment">Commentaire</label><br />
+        <textarea id="comment" name="comment"></textarea>
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>
+
+
