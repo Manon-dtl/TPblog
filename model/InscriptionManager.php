@@ -1,6 +1,6 @@
 <?php
 
-class FormulaireManager
+class InscriptionManager
 {
 
     private function dbConnect()
@@ -9,17 +9,7 @@ class FormulaireManager
         return $db;
     }
 
-    public function testUser($pseudoconnexion)
-    {
-        $db = $this->dbConnect();
-        $requser = $db->prepare("SELECT * FROM membres WHERE pseudo = ? ");
-        $requser->execute(array($pseudoconnexion));
-        $datauser = $requser->fetch();
-        $userexist = $requser->rowCount();
-
-        return [$datauser, $userexist];
-    }
-
+   
     public function testMail($mail)
     {
         $db = $this->dbConnect();

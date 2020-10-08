@@ -28,4 +28,13 @@ public function billetComment($billetId, $auteur, $comment)
 
     return $affectedLines;
 }
+public function changeComment($billetId, $auteur, $comment)
+{
+    $db =  $this->dbConnect();
+    $comments = $db->prepare( 'UPDATE commentaires SET auteur = ?, commentaire = ?, date_commentaire = NOW() WHERE id = ? AND post_id = ?');
+    $affectedComment = $comments->execute(array($billetId, $auteur, $comment));
+
+    return $affectedComment;
+}
+
 }

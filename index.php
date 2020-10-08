@@ -28,8 +28,13 @@ try {
             connexion();
         } elseif ($_GET['action'] == 'inscription') {
             inscription();
+        } elseif ($_GET['action'] == 'updateComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['auteur']) && !empty($_POST['comment'])) {
+                    updateComment($_GET['id'], $_POST['auteur'], $_POST['comment']);
+                }
+            }
         }
-        
     } else {
         listBillets();
     }

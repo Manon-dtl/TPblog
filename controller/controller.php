@@ -2,7 +2,8 @@
 
 require_once('model/BilletManager.php');
 require_once('model/CommentManager.php');
-require_once('model/FormulaireManager.php');
+require_once('model/ConnexionManager.php');
+require_once('model/InscriptionManager.php');
 
 function listBillets()
 {
@@ -37,14 +38,14 @@ function addComment($billetId, $auteur, $comment)
 
 function connexion()
 {
-    $formulaireManager = new FormulaireManager();
+    $connexionManager = new ConnexionManager();
 
     if (isset($_POST['formconnexion'])) {
         if (!empty($_POST['pseudoconnexion']) and !empty($_POST['passconnexion'])) {
 
             $pseudoconnexion = htmlspecialchars($_POST['pseudoconnexion']);
             $passconnexion = htmlspecialchars($_POST['passconnexion']);
-            [$datauser, $userexist] =$formulaireManager-> testUser($pseudoconnexion);
+            [$datauser, $userexist] =$connexionManager->testUser($pseudoconnexion);
             if ($userexist == 1) {
                 $isPasswordCorrect = password_verify($_POST['passconnexion'], $datauser['pass']);
                 if ($isPasswordCorrect) {
@@ -65,7 +66,7 @@ function connexion()
 
 function inscription()
 {
-    $formulaireManager = new FormulaireManager();
+    $inscriptionManager = new InscriptionManager();
 
     if (isset($_POST['forminscription'])) {
 
@@ -81,17 +82,17 @@ function inscription()
             if ($pseudolength <= 255) {
                 if ($mail == $mailverif) {
                     if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                        $mailexist = $formulaireManager-> testMail($mail);
-                      testMail($mail);
+                        $mailexist = $inscriptionManager-> testMail($mail);
+                      
                         if ($mailexist == 0) {
-                            $pseudo = $formulaireManager-> testPseudo($pseudo);
-                            testPseudo($pseudo);
+                            $pseudo = $inscriptionManager-> testPseudo($pseudo);
+                           
                             if ($pseudo == $pseudo) {
-                                $insertmembre = $formulaireManager-> createMember($pseudo, $pass, $mail);
-                                createMember($pseudo, $pass, $mail);
+                                $insertmembre = $inscriptionManager-> createMember($pseudo, $pass, $mail);
+                               
                                 if ($pass == $passverif) {
                                     
-                                    echo "Votre compte a bien été crée <a href=\"connexion.php\">Me connecter</a>";
+                                    echo "Votre compte a bien été crée <a href=\"view/connexionView.php\">Me connecter</a>";
                                 } else {
                                     echo " Vos mots de passes ne correspondent pas";
                                 }
@@ -116,4 +117,17 @@ function inscription()
     }
 
 require('view/inscriptionView.php');
+}
+
+
+function updateComment($billetId, $auteur, $comment)
+{
+    $commentManager = new CommentManager();
+    $affectedComment = $commentManager->changeComment($billetId, $auteur, $comment);
+    if ($affectedComment === false) {
+        throw new Exception('Impossible de modifier le commentaire !');
+    }
+    else {
+        header('Location: TPblog/index.php?action=billett&id='. $billetId);
+    }
 }
