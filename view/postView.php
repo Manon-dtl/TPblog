@@ -23,7 +23,8 @@ while ($comment = $comments->fetch())
 ?>
     <p><strong><?php echo htmlspecialchars($comment['auteur']); ?>
         </strong> le <?php echo $comment['date_creation']; ?></p>
-    <p><?php echo nl2br(htmlspecialchars($comment['commentaire'])) ?> </p> <p> <a href='view/updateCommentView.php'> Modifier</a>
+    <p><?php echo nl2br(htmlspecialchars($comment['commentaire'])) ?> </p> <p> 
+        <a href='index.php?action=updateComment&amp;id=<?= $comment['id'] ?>'>Modifier</a>
 <?php
 }
 ?>

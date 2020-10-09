@@ -2,4 +2,4 @@
 
 $_SESSION = array();
 session_destroy();
-header("Location: connexionView.php");
+header("Location: view/connexionView.php");

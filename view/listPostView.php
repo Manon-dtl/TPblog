@@ -20,7 +20,7 @@ ob_start();
       <p>
         <?php echo nl2br(htmlspecialchars($donnees['contenu'])); ?>
         <br />
-        <em><a href="view/postView.php?id=<?= $donnees['id'] ?>">Commentaires</a></em>
+        <em><a href="index.php?action=billet&id=<?= $donnees['id'] ?>">Commentaires</a></em>
       </p>
     </div>
   <?php

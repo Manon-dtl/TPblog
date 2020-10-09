@@ -23,17 +23,18 @@ function billet()
     require('view/postView.php');
 }
 
-function addComment($billetId, $auteur, $comment)
+function addComment($commentId, $auteur, $comment)
 {
     $commentManager = new CommentManager();
-    $affectedLines = $commentManager->billetComment($billetId, $auteur, $comment);
+    $affectedLines = $commentManager->billetComment($commentId, $auteur, $comment);
 
     if ($affectedLines === false) {
        throw new Exception('Impossible d\'ajouter le commentaire !');
     }
-    else {
-        header('Location: /index.php?action=billet&id=' . $billetId);
-    }
+    
+    $billetManager = new BilletManager();
+    $billet = $billetManager->getBilletFromCommentId($commentId);
+    header('Location: ./index.php?action=billet&id=' . $billet['id']);
 }
 
 function connexion()
@@ -119,15 +120,21 @@ function inscription()
 require('view/inscriptionView.php');
 }
 
+function updateComment($idComment){
+    $commentManager = new CommentManager();
+    $comment = $commentManager->getComment($idComment);
 
-function updateComment($billetId, $auteur, $comment)
+    require('view/updateCommentView.php');
+}
+
+function changeComment($idComment, $comment)
 {
     $commentManager = new CommentManager();
-    $affectedComment = $commentManager->changeComment($billetId, $auteur, $comment);
+    $affectedComment = $commentManager->changeComment($idComment, $comment);
     if ($affectedComment === false) {
         throw new Exception('Impossible de modifier le commentaire !');
     }
     else {
-        header('Location: TPblog/index.php?action=billett&id='. $billetId);
+        header('Location: ./index.php?action=billet&id=' . $idComment);
     }
 }

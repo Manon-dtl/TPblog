@@ -23,6 +23,13 @@ class BilletManager
         return $billet;
     }
 
+    public function getBilletFromCommentId($commentId){
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation  FROM billets WHERE id = ?');
+        $req->execute(array($commentId));
+        $billetId = $req->fetch();
+    }
+
     private function dbConnect()
     {
     $db = new PDO('mysql:host=localhost;dbname=TPblog;charset=utf8', 'root', 'root');
