@@ -1,6 +1,6 @@
 <?php
 
-class CommentManager
+class CommentManager extends Manager
 {
     public function getComment($commentId)
     {
@@ -20,13 +20,6 @@ class CommentManager
 
         return $comments;
     }
-
-    private function dbConnect()
-    {
-        $db = new PDO('mysql:host=localhost;dbname=TPblog;charset=utf8', 'root', 'root');
-        return $db;
-    }
-
 
     public function billetComment($billetId, $auteur, $comment)
     {

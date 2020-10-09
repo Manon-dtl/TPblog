@@ -1,6 +1,6 @@
 <?php
 
-class BilletManager
+class BilletManager extends Manager
 {
 
 
@@ -28,12 +28,6 @@ class BilletManager
         $req = $db->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation  FROM billets WHERE id = ?');
         $req->execute(array($commentId));
         $billetId = $req->fetch();
-    }
-
-    private function dbConnect()
-    {
-    $db = new PDO('mysql:host=localhost;dbname=TPblog;charset=utf8', 'root', 'root');
-    return $db;
     }
 
 }

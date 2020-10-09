@@ -1,6 +1,6 @@
 <?php
 
-class ConnexionManager
+class ConnexionManager extends Manager
 {
 
 public function testUser($pseudoconnexion)
@@ -13,9 +13,5 @@ public function testUser($pseudoconnexion)
 
         return [$datauser, $userexist];
     }
-    private function dbConnect()
-    {
-        $db = new PDO('mysql:host=localhost;dbname=TPblog;charset=utf8', 'root', 'root');
-        return $db;
-    }
+
 }

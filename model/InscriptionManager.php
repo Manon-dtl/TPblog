@@ -1,15 +1,8 @@
 <?php
 
-class InscriptionManager
+class InscriptionManager extends Manager
 {
 
-    private function dbConnect()
-    {
-        $db = new PDO('mysql:host=localhost;dbname=TPblog;charset=utf8', 'root', 'root');
-        return $db;
-    }
-
-   
     public function testMail($mail)
     {
         $db = $this->dbConnect();

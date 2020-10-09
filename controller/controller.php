@@ -1,5 +1,5 @@
 <?php
-
+require_once('model/Manager.php');
 require_once('model/BilletManager.php');
 require_once('model/CommentManager.php');
 require_once('model/ConnexionManager.php');
@@ -135,6 +135,8 @@ function changeComment($idComment, $comment)
         throw new Exception('Impossible de modifier le commentaire !');
     }
     else {
-        header('Location: ./index.php?action=billet&id=' . $idComment);
+        header('Location: ./index.php?action=billet&id=' . $billet['id']);
     }
+
+    require('view/PostView.php');
 }

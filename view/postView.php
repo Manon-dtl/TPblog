@@ -5,13 +5,11 @@
 <p><a href="/index.php">Retour à l'Accueil</a></p>
 
 <div class="News">
-    <?php echo $billet['titre']; ?>
-    <p>le <?php echo $billet['date_creation']; ?></p>
+    <?=$billet['titre']; ?>
+    <p>le <?= $billet['date_creation']; ?></p>
 
     <p>
-        <?php
-        echo nl2br(htmlspecialchars($billet['contenu']));
-        ?>
+        <?=nl2br(htmlspecialchars($billet['contenu']));?>
     </p>
 </div>
 
@@ -21,15 +19,13 @@
 while ($comment = $comments->fetch()) 
 {
 ?>
-    <p><strong><?php echo htmlspecialchars($comment['auteur']); ?>
-        </strong> le <?php echo $comment['date_creation']; ?></p>
-    <p><?php echo nl2br(htmlspecialchars($comment['commentaire'])) ?> </p> <p> 
+    <p><strong><?=htmlspecialchars($comment['auteur']); ?>
+        </strong> le <?=$comment['date_creation']; ?></p>
+    <p><?= nl2br(htmlspecialchars($comment['commentaire'])) ?> </p> <p> 
         <a href='index.php?action=updateComment&amp;id=<?= $comment['id'] ?>'>Modifier</a>
 <?php
 }
 ?>
-<?php $content = ob_get_clean(); ?>
-<?php require('view/template.php'); ?>
 
 <h2>Ajouter un commentaire</h2>
 
@@ -47,4 +43,6 @@ while ($comment = $comments->fetch())
     </div>
 </form>
 
+<?php $content = ob_get_clean(); ?>
+<?php require('view/template.php'); ?>
 
